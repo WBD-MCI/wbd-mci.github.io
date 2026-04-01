@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCI — Media Cloud Infrastructure · Warner Bros. Discovery</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
@@ -83,10 +85,8 @@
     border-radius: 6px;
     transition: all 0.15s;
   }
-
   .nav-links a:hover { color: var(--text-primary); background: var(--surface-3); }
 
-  /* HERO */
   .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
 
   .hero-badge {
@@ -136,12 +136,9 @@
 
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--wbd-blue);
-    color: #fff;
-    font-family: var(--font-sans);
-    font-size: 14px; font-weight: 500;
-    padding: 10px 20px;
-    border-radius: 8px;
+    background: var(--wbd-blue); color: #fff;
+    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+    padding: 10px 20px; border-radius: 8px;
     text-decoration: none; border: none; cursor: pointer;
     transition: background 0.15s;
   }
@@ -149,41 +146,29 @@
 
   .btn-secondary {
     display: inline-flex; align-items: center; gap: 8px;
-    background: transparent;
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    font-size: 14px; font-weight: 400;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: pointer;
+    background: transparent; color: var(--text-secondary);
+    font-family: var(--font-sans); font-size: 14px; font-weight: 400;
+    padding: 10px 20px; border-radius: 8px;
+    text-decoration: none; border: 1px solid var(--border); cursor: pointer;
     transition: all 0.15s;
   }
   .btn-secondary:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
 
-  /* STATS */
   .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin: 48px 0;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; margin: 48px 0;
   }
 
   .stat { background: var(--surface-2); padding: 24px; text-align: center; }
   .stat-num { font-size: 28px; font-weight: 700; color: var(--text-primary); font-family: var(--font-mono); letter-spacing: -0.02em; display: block; }
   .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; display: block; }
 
-  /* SECTION */
   .section-header { margin: 56px 0 28px; }
   .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
   .section-header h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
 
-  /* PILLARS */
   .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
   .pillar {
@@ -194,36 +179,21 @@
     transition: border-color 0.2s;
   }
   .pillar:hover { border-color: var(--border-bright); }
-
-  .pillar-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
-    font-size: 18px;
-    background: rgba(0,87,184,0.15);
-    border: 1px solid rgba(0,87,184,0.2);
-  }
-
   .pillar h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
   .pillar p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .pillar-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; color: var(--text-mono); background: rgba(0,196,180,0.08); border: 1px solid rgba(0,196,180,0.15); padding: 2px 8px; border-radius: 10px; margin-top: 12px; }
 
-  /* REPOS */
   .repos { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 
   .repo-item {
     background: var(--surface-2);
     padding: 20px 22px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    cursor: pointer;
-    transition: background 0.15s;
-    text-decoration: none;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; cursor: pointer; transition: background 0.15s; text-decoration: none;
   }
   .repo-item:hover { background: var(--surface-3); }
+  .repo-item.static { cursor: default; opacity: 0.6; }
+  .repo-item.static:hover { background: var(--surface-2); }
 
   .repo-left { display: flex; align-items: flex-start; gap: 14px; min-width: 0; flex: 1; }
 
@@ -233,8 +203,8 @@
     background: var(--surface-3);
     border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
     margin-top: 2px;
+    overflow: hidden;
   }
 
   .repo-info { min-width: 0; flex: 1; }
@@ -242,51 +212,22 @@
   .repo-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
 
   .repo-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .repo-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-secondary);
-    background: var(--surface-3);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
+  .repo-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--surface-3); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; }
 
   .repo-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; padding-top: 2px; }
 
-  .repo-status {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 10px;
-    white-space: nowrap;
-  }
-
-  .status-active {
-    color: #4ade80;
-    background: rgba(74,222,128,0.08);
-    border: 1px solid rgba(74,222,128,0.2);
-  }
+  .repo-status { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 10px; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
+  .status-active { color: #4ade80; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); }
   .status-active::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
-
-  .status-planned {
-    color: var(--text-secondary);
-    background: var(--surface-3);
-    border: 1px solid var(--border);
-  }
+  .status-planned { color: var(--text-secondary); background: var(--surface-3); border: 1px solid var(--border); }
   .status-planned::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-secondary); opacity: 0.5; }
 
   .repo-lang { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
   .lang-dot { width: 8px; height: 8px; border-radius: 50%; }
-
   .repo-arrow { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
 
-  /* FOOTER */
   footer {
-    margin-top: 64px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
+    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   }
   .footer-left { display: flex; align-items: center; gap: 10px; }
@@ -338,7 +279,7 @@
         <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         Browse repositories
       </a>
-      <a href="mailto:javier.barbero@wbd.com" class="btn-secondary">Contact the team</a>
+      <a href="mailto:mediacloudinfrastructure@warnermedia.com" class="btn-secondary">Contact the team</a>
     </div>
   </section>
 
@@ -364,25 +305,21 @@
 
   <div class="pillars">
     <div class="pillar">
-      <div class="pillar-icon">🔧</div>
       <h3>Agent Deployment</h3>
       <p>Automated, idempotent rollout of monitoring and security agents across Windows and Linux hosts in vCenter-managed environments — no manual steps, no drift.</p>
       <span class="pillar-tag">ansible · vcenter</span>
     </div>
     <div class="pillar">
-      <div class="pillar-icon">🛡️</div>
       <h3>Security & Compliance</h3>
       <p>Consistent deployment of endpoint security tooling — SentinelOne, Tenable Nessus, Automox — ensuring every host in the fleet meets security requirements.</p>
       <span class="pillar-tag">sentinelone · nessus · automox</span>
     </div>
     <div class="pillar">
-      <div class="pillar-icon">📡</div>
       <h3>Monitoring Coverage</h3>
       <p>CheckMK agent deployment across the estate, providing unified visibility into host health, availability, and performance for LATAM media infrastructure.</p>
       <span class="pillar-tag">checkmk · observability</span>
     </div>
     <div class="pillar">
-      <div class="pillar-icon">☁️</div>
       <h3>Cloud Infrastructure</h3>
       <p>Growing our IaC practice with Terraform — bringing the same automation-first approach to cloud resource provisioning and platform engineering.</p>
       <span class="pillar-tag">terraform · iac · roadmap</span>
@@ -398,7 +335,12 @@
 
     <a href="https://github.com/WBD-MCI/ansible-agents" target="_blank" class="repo-item">
       <div class="repo-left">
-        <div class="repo-icon">⚙️</div>
+        <div class="repo-icon">
+          <svg width="22" height="22" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="128" cy="128" r="128" fill="#1A1918"/>
+            <path d="M128 34.2C76.7 34.2 34.2 76.7 34.2 128S76.7 221.8 128 221.8 221.8 179.3 221.8 128 179.3 34.2 128 34.2zm30.6 140.7l-42-89.5-13.4 57.3H88.6l20.2-84.5c.9-3.7 4.2-6.3 8-6.3s7.1 2.5 8 6.2l46.5 98.6-12.7 18.2z" fill="#E00"/>
+          </svg>
+        </div>
         <div class="repo-info">
           <div class="repo-name">ansible-agents</div>
           <div class="repo-desc">Ansible automation for deploying CheckMK, Automox, SentinelOne and Tenable Nessus agents across vCenter-managed Windows and Linux hosts.</div>
@@ -422,14 +364,16 @@
       </div>
     </a>
 
-    <div class="repo-item" style="cursor: default; opacity: 0.6;">
+    <div class="repo-item static">
       <div class="repo-left">
-<div class="repo-icon">
-  <!-- Terraform official logo -->
-  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M1.44 0V7.575L8 11.365V3.787Zm21.12 4.227l-6.56 3.791v7.574l6.56-3.787ZM8.72 4.23v7.575l6.56 3.787V8.018zM8.72 12.635v7.575L15.28 24v-7.578z"/>
-  </svg>
-</div>
+        <div class="repo-icon">
+          <svg width="22" height="22" viewBox="0 0 256 290" xmlns="http://www.w3.org/2000/svg">
+            <path d="M96.7 0l96.8 55.9v111.7L96.7 223.5z" fill="#4040B2"/>
+            <path d="M0 55.9l96.7 55.8v111.8L0 167.6z" fill="#5C4EE5"/>
+            <path d="M193.5 55.9L290 0v167.7l-96.5 55.8z" fill="#4040B2"/>
+            <path d="M96.7 234.3l96.8 55.8v-111.7l-96.8-55.9z" fill="#5C4EE5"/>
+          </svg>
+        </div>
         <div class="repo-info">
           <div class="repo-name">terraform-platform</div>
           <div class="repo-desc">Terraform modules for cloud resource provisioning and platform infrastructure — planned as the IaC practice expands.</div>
