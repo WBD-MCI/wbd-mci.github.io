@@ -1,408 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCI — Media Cloud Infrastructure · Warner Bros. Discovery</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCI — Media Cloud Infrastructure · Warner Bros. Discovery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --wbd-blue: #0057B8;
-    --wbd-blue-light: #1a6fd4;
-    --wbd-accent: #00C4B4;
-    --surface: #0a0f1e;
-    --surface-2: #101828;
-    --surface-3: #1a2236;
-    --border: rgba(255,255,255,0.08);
-    --border-bright: rgba(0,196,180,0.3);
-    --text-primary: #f0f2f5;
-    --text-secondary: #8a9bb5;
-    --text-mono: #5af5e8;
-    --font-sans: 'Space Grotesk', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-  }
+    :root {
+      --wbd-blue: #0057B8;
+      --wbd-blue-light: #1a6fd4;
+      --wbd-accent: #00C4B4;
+      --surface: #0a0f1e;
+      --surface-2: #101828;
+      --surface-3: #1a2236;
+      --border: rgba(255,255,255,0.08);
+      --border-bright: rgba(0,196,180,0.3);
+      --text-primary: #f0f2f5;
+      --text-secondary: #8a9bb5;
+      --text-mono: #5af5e8;
+      --font-sans: 'Space Grotesk', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
 
-  body {
-    background: var(--surface);
-    color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+    body {
+      background: var(--surface);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,87,184,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,87,184,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,87,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,87,184,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-  .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
+    .page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
 
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0 16px;
-    border-bottom: 1px solid var(--border);
-  }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 16px;
+      border-bottom: 1px solid var(--border);
+    }
 
-  .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
 
-  .nav-logo {
-    width: 32px; height: 32px;
-    background: var(--wbd-blue);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: #fff;
-    letter-spacing: -0.5px;
-    flex-shrink: 0;
-  }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: var(--wbd-blue);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
 
-  .nav-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
-  .nav-sub { font-size: 12px; color: var(--text-secondary); }
+    .nav-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .nav-sub { font-size: 12px; color: var(--text-secondary); }
 
-  .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
 
-  .nav-links a {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    transition: all 0.15s;
-  }
-  .nav-links a:hover { color: var(--text-primary); background: var(--surface-3); }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--surface-3); }
 
-  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+    .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-mono);
-    background: rgba(0,196,180,0.08);
-    border: 1px solid rgba(0,196,180,0.2);
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 24px;
-    letter-spacing: 0.05em;
-  }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-mono);
+      background: rgba(0,196,180,0.08);
+      border: 1px solid rgba(0,196,180,0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
 
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--wbd-accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--wbd-accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
 
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-  .hero h1 {
-    font-size: clamp(30px, 5vw, 46px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
 
-  .hero h1 span { color: var(--wbd-accent); }
+    .hero h1 span { color: var(--wbd-accent); }
 
-  .hero-desc {
-    font-size: 16px;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 20px 0 32px;
-    line-height: 1.7;
-  }
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 20px 0 32px;
+      line-height: 1.7;
+    }
 
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--wbd-blue); color: #fff;
-    font-family: var(--font-sans); font-size: 14px; font-weight: 500;
-    padding: 10px 20px; border-radius: 8px;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: background 0.15s;
-  }
-  .btn-primary:hover { background: var(--wbd-blue-light); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--wbd-blue); color: #fff;
+      font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+      padding: 10px 20px; border-radius: 8px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--wbd-blue-light); }
 
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--text-secondary);
-    font-family: var(--font-sans); font-size: 14px; font-weight: 400;
-    padding: 10px 20px; border-radius: 8px;
-    text-decoration: none; border: 1px solid var(--border); cursor: pointer;
-    transition: all 0.15s;
-  }
-  .btn-secondary:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text-secondary);
+      font-family: var(--font-sans); font-size: 14px; font-weight: 400;
+      padding: 10px 20px; border-radius: 8px;
+      text-decoration: none; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-secondary:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
 
-  .stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border); border-radius: 12px;
-    overflow: hidden; margin: 48px 0;
-  }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; margin: 48px 0;
+    }
 
-  .stat { background: var(--surface-2); padding: 24px; text-align: center; }
-  .stat-num { font-size: 28px; font-weight: 700; color: var(--text-primary); font-family: var(--font-mono); letter-spacing: -0.02em; display: block; }
-  .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; display: block; }
+    .stat { background: var(--surface-2); padding: 24px; text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 700; color: var(--text-primary); font-family: var(--font-mono); letter-spacing: -0.02em; display: block; }
+    .stat-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; display: block; }
 
-  .section-header { margin: 56px 0 28px; }
-  .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
-  .section-header h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+    .section-header { margin: 56px 0 28px; }
+    .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-mono); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .section-header h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
 
-  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 
-  .pillar {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    transition: border-color 0.2s;
-  }
-  .pillar:hover { border-color: var(--border-bright); }
-  .pillar h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
-  .pillar p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-  .pillar-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; color: var(--text-mono); background: rgba(0,196,180,0.08); border: 1px solid rgba(0,196,180,0.15); padding: 2px 8px; border-radius: 10px; margin-top: 12px; }
+    .pillar {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .pillar:hover { border-color: var(--border-bright); }
+    .pillar h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; }
+    .pillar p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .pillar-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; color: var(--text-mono); background: rgba(0,196,180,0.08); border: 1px solid rgba(0,196,180,0.15); padding: 2px 8px; border-radius: 10px; margin-top: 12px; }
 
-  .repos { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    a.pillar {
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
 
-  .repo-item {
-    background: var(--surface-2);
-    padding: 20px 22px;
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 16px; cursor: pointer; transition: background 0.15s; text-decoration: none;
-  }
-  .repo-item:hover { background: var(--surface-3); }
-  .repo-item.static { cursor: default; opacity: 0.6; }
-  .repo-item.static:hover { background: var(--surface-2); }
+    .pillar-link-arrow {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      transition: color 0.15s;
+    }
+    a.pillar:hover .pillar-link-arrow { color: var(--wbd-accent); }
 
-  .repo-left { display: flex; align-items: flex-start; gap: 14px; min-width: 0; flex: 1; }
+    .repos { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
 
-  .repo-icon {
-    width: 36px; height: 36px; flex-shrink: 0;
-    border-radius: 8px;
-    background: var(--surface-3);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 2px;
-    overflow: hidden;
-  }
+    .repo-item {
+      background: var(--surface-2);
+      padding: 20px 22px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; cursor: pointer; transition: background 0.15s; text-decoration: none;
+    }
+    .repo-item:hover { background: var(--surface-3); }
 
-  .repo-info { min-width: 0; flex: 1; }
-  .repo-name { font-size: 14px; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono); margin-bottom: 4px; }
-  .repo-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .repo-left { display: flex; align-items: flex-start; gap: 14px; min-width: 0; flex: 1; }
 
-  .repo-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-  .repo-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--surface-3); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; }
+    .repo-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+      overflow: hidden;
+    }
 
-  .repo-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; padding-top: 2px; }
+    .repo-info { min-width: 0; flex: 1; }
+    .repo-name { font-size: 14px; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono); margin-bottom: 4px; }
+    .repo-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
 
-  .repo-status { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 10px; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
-  .status-active { color: #4ade80; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); }
-  .status-active::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
-  .status-planned { color: var(--text-secondary); background: var(--surface-3); border: 1px solid var(--border); }
-  .status-planned::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--text-secondary); opacity: 0.5; }
+    .repo-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .repo-tag { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); background: var(--surface-3); border: 1px solid var(--border); padding: 2px 8px; border-radius: 10px; }
 
-  .repo-lang { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
-  .lang-dot { width: 8px; height: 8px; border-radius: 50%; }
-  .repo-arrow { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+    .repo-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; padding-top: 2px; }
 
-  footer {
-    margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
-  .footer-left { display: flex; align-items: center; gap: 10px; }
-  .footer-text { font-size: 12px; color: var(--text-secondary); }
-  .footer-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono); transition: color 0.15s; }
-  .footer-link:hover { color: var(--wbd-accent); }
+    .repo-status { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 10px; padding: 3px 8px; border-radius: 10px; white-space: nowrap; }
+    .status-active { color: #4ade80; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2); }
+    .status-active::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4ade80; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  .hero { animation: fadeUp 0.5s ease both; }
-  .stats { animation: fadeUp 0.5s ease 0.1s both; }
-  .pillars { animation: fadeUp 0.5s ease 0.15s both; }
-  .repos { animation: fadeUp 0.5s ease 0.2s both; }
+    .repo-lang { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+    .lang-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .repo-arrow { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
 
-  @media (max-width: 600px) {
-    .pillars { grid-template-columns: 1fr; }
-    .stats { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .repo-right { display: none; }
-  }
-</style>
+    footer {
+      margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-left { display: flex; align-items: center; gap: 10px; }
+    .footer-right { display: flex; align-items: center; gap: 16px; }
+    .footer-text { font-size: 12px; color: var(--text-secondary); }
+    .footer-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono); transition: color 0.15s; }
+    .footer-link:hover { color: var(--wbd-accent); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .hero { animation: fadeUp 0.5s ease both; }
+    .stats { animation: fadeUp 0.5s ease 0.1s both; }
+    .pillars { animation: fadeUp 0.5s ease 0.15s both; }
+    .repos { animation: fadeUp 0.5s ease 0.2s both; }
+
+    @media (max-width: 600px) {
+      .pillars { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .repo-right { display: none; }
+    }
+  </style>
 </head>
 <body>
-<div class="page">
 
-  <nav>
-    <div class="nav-brand">
-      <div class="nav-logo">MCI</div>
-      <div>
-        <div class="nav-title">Media Cloud Infrastructure</div>
-        <div class="nav-sub">Warner Bros. Discovery · LATAM</div>
+  <div class="page">
+
+    <nav>
+      <div class="nav-brand">
+        <div class="nav-logo">MCI</div>
+        <div>
+          <div class="nav-title">Media Cloud Infrastructure</div>
+          <div class="nav-sub">Warner Bros. Discovery · LATAM</div>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="https://github.com/orgs/WBD-MCI/repositories" target="_blank">Repos</a></li>
+        <li><a href="https://github.com/orgs/WBD-MCI/projects" target="_blank">Projects</a></li>
+        <li><a href="https://github.com/orgs/WBD-MCI/people" target="_blank">Team</a></li>
+        <li><a href="https://github.com/WBD-MCI" target="_blank">GitHub ↗</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-badge">WBD-MCI · Buenos Aires, AR</div>
+      <h1>Infrastructure as code<br><span>for media at scale</span></h1>
+      <p class="hero-desc">We build and operate the automation and monitoring platforms that keep Warner Bros. Discovery's media workloads running across Latin America — from agent deployment to cloud infrastructure, managed as code.</p>
+      <div class="hero-cta">
+        <a href="https://github.com/orgs/WBD-MCI/repositories" target="_blank" class="btn-primary">
+          Browse repositories
+        </a>
+        <a href="mailto:mediacloudinfrastructure@warnermedia.com" class="btn-secondary">
+          Contact the team
+        </a>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">LATAM</span>
+        <span class="stat-label">Region coverage</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">IaC</span>
+        <span class="stat-label">Everything as code</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">WBD</span>
+        <span class="stat-label">Warner Bros. Discovery</span>
       </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="https://github.com/orgs/WBD-MCI/repositories" target="_blank">Repos</a></li>
-      <li><a href="https://github.com/orgs/WBD-MCI/projects" target="_blank">Projects</a></li>
-      <li><a href="https://github.com/orgs/WBD-MCI/people" target="_blank">Team</a></li>
-      <li><a href="https://github.com/WBD-MCI" target="_blank" style="color: var(--wbd-accent);">GitHub ↗</a></li>
-    </ul>
-  </nav>
 
-  <section class="hero">
-    <div class="hero-badge">WBD-MCI · Buenos Aires, AR</div>
-    <h1>Infrastructure as code<br>for <span>media at scale</span></h1>
-    <p class="hero-desc">
-      We build and operate the automation and monitoring platforms that keep Warner Bros. Discovery's media workloads running across Latin America — from agent deployment to cloud infrastructure, managed as code.
-    </p>
-    <div class="hero-cta">
-      <a href="https://github.com/orgs/WBD-MCI/repositories" target="_blank" class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-        Browse repositories
+    <div class="section-header">
+      <div class="section-label">// what we build</div>
+      <h2>Our focus areas</h2>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Agent Deployment</h3>
+        <p>Automated, idempotent rollout of monitoring and security agents across Windows and Linux hosts in vCenter-managed environments — no manual steps, no drift.</p>
+        <span class="pillar-tag">ansible · vcenter</span>
+      </div>
+      <div class="pillar">
+        <h3>Security &amp; Compliance</h3>
+        <p>Consistent deployment of endpoint security tooling — SentinelOne, Tenable Nessus, Automox — ensuring every host in the fleet meets security requirements.</p>
+        <span class="pillar-tag">sentinelone · nessus · automox</span>
+      </div>
+      <div class="pillar">
+        <h3>Monitoring Coverage</h3>
+        <p>CheckMK agent deployment across the estate, providing unified visibility into host health, availability, and performance for LATAM media infrastructure.</p>
+        <span class="pillar-tag">checkmk · observability</span>
+      </div>
+      <div class="pillar">
+        <h3>Cloud Infrastructure</h3>
+        <p>Terraform-managed vSphere infrastructure across the LATAM estate — VMs, networking, and resource pools provisioned as code.</p>
+        <span class="pillar-tag">terraform · vsphere · iac</span>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-label">// internal resources</div>
+      <h2>Quick Links</h2>
+    </div>
+
+    <div class="pillars">
+      <!-- Replace YOUR_WIKI_URL with your Confluence / Notion / SharePoint link -->
+      <a href="YOUR_WIKI_URL" target="_blank" class="pillar">
+        <h3>Internal Wiki &amp; Runbooks</h3>
+        <p>Architecture docs, operational runbooks, and onboarding guides for the MCI platform.</p>
+        <span class="pillar-link-arrow">→ Open wiki</span>
       </a>
-      <a href="mailto:mediacloudinfrastructure@warnermedia.com" class="btn-secondary">Contact the team</a>
+      <!-- Replace YOUR_SLACK_URL with your Slack deep link or workspace URL -->
+      <a href="YOUR_SLACK_URL" target="_blank" class="pillar">
+        <h3>Slack Channel</h3>
+        <p>Join the team channel for questions, incident updates, and day-to-day coordination.</p>
+        <span class="pillar-link-arrow">→ Open Slack</span>
+      </a>
+      <!-- Replace YOUR_CHECKMK_URL with your CheckMK dashboard URL -->
+      <a href="YOUR_CHECKMK_URL" target="_blank" class="pillar">
+        <h3>CheckMK Dashboard</h3>
+        <p>Unified monitoring dashboard for host health, availability, and performance across the LATAM estate.</p>
+        <span class="pillar-link-arrow">→ Open dashboard</span>
+      </a>
+      <!-- Replace YOUR_ESCALATION_URL with your PagerDuty / ServiceNow / ticketing link -->
+      <a href="YOUR_ESCALATION_URL" target="_blank" class="pillar">
+        <h3>Incident Escalation</h3>
+        <p>Raise a ticket or escalate an incident through the team's incident management process.</p>
+        <span class="pillar-link-arrow">→ Open escalation</span>
+      </a>
     </div>
-  </section>
 
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-num">LATAM</span>
-      <span class="stat-label">Region coverage</span>
+    <div class="section-header">
+      <div class="section-label">// repositories</div>
+      <h2>Codebase</h2>
     </div>
-    <div class="stat">
-      <span class="stat-num">IaC</span>
-      <span class="stat-label">Everything as code</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">WBD</span>
-      <span class="stat-label">Warner Bros. Discovery</span>
-    </div>
-  </div>
 
-  <div class="section-header">
-    <div class="section-label">// what we build</div>
-    <h2>Our focus areas</h2>
-  </div>
+    <div class="repos">
 
-  <div class="pillars">
-    <div class="pillar">
-      <h3>Agent Deployment</h3>
-      <p>Automated, idempotent rollout of monitoring and security agents across Windows and Linux hosts in vCenter-managed environments — no manual steps, no drift.</p>
-      <span class="pillar-tag">ansible · vcenter</span>
-    </div>
-    <div class="pillar">
-      <h3>Security & Compliance</h3>
-      <p>Consistent deployment of endpoint security tooling — SentinelOne, Tenable Nessus, Automox — ensuring every host in the fleet meets security requirements.</p>
-      <span class="pillar-tag">sentinelone · nessus · automox</span>
-    </div>
-    <div class="pillar">
-      <h3>Monitoring Coverage</h3>
-      <p>CheckMK agent deployment across the estate, providing unified visibility into host health, availability, and performance for LATAM media infrastructure.</p>
-      <span class="pillar-tag">checkmk · observability</span>
-    </div>
-    <div class="pillar">
-      <h3>Cloud Infrastructure</h3>
-      <p>Growing our IaC practice with Terraform — bringing the same automation-first approach to cloud resource provisioning and platform engineering.</p>
-      <span class="pillar-tag">terraform · iac · roadmap</span>
-    </div>
-  </div>
-
-  <div class="section-header">
-    <div class="section-label">// repositories</div>
-    <h2>Codebase</h2>
-  </div>
-
-  <div class="repos">
-
-    <a href="https://github.com/WBD-MCI/ansible-agents" target="_blank" class="repo-item">
-      <div class="repo-left">
-        <div class="repo-icon">
-          <svg width="22" height="22" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="128" cy="128" r="128" fill="#1A1918"/>
-            <path d="M128 34.2C76.7 34.2 34.2 76.7 34.2 128S76.7 221.8 128 221.8 221.8 179.3 221.8 128 179.3 34.2 128 34.2zm30.6 140.7l-42-89.5-13.4 57.3H88.6l20.2-84.5c.9-3.7 4.2-6.3 8-6.3s7.1 2.5 8 6.2l46.5 98.6-12.7 18.2z" fill="#E00"/>
-          </svg>
-        </div>
-        <div class="repo-info">
-          <div class="repo-name">ansible-agents</div>
-          <div class="repo-desc">Ansible automation for deploying CheckMK, Automox, SentinelOne and Tenable Nessus agents across vCenter-managed Windows and Linux hosts.</div>
-          <div class="repo-tags">
-            <span class="repo-tag">ansible</span>
-            <span class="repo-tag">vcenter</span>
-            <span class="repo-tag">windows</span>
-            <span class="repo-tag">linux</span>
-            <span class="repo-tag">checkmk</span>
-            <span class="repo-tag">sentinelone</span>
+      <a class="repo-item" href="https://github.com/WBD-MCI/ansible-agents" target="_blank">
+        <div class="repo-left">
+          <div class="repo-icon">
+            <svg width="22" height="22" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="64" cy="64" r="64" fill="#171717"/>
+              <path d="M64 18C38.6 18 18 38.6 18 64s20.6 46 46 46 46-20.6 46-46S89.4 18 64 18zm14.4 67.2L63.2 59.8v25.4H52.8V42.8h9.6L77.6 68V42.8H88v42.4H78.4z" fill="#EE0000"/>
+            </svg>
+          </div>
+          <div class="repo-info">
+            <div class="repo-name">ansible-agents</div>
+            <div class="repo-desc">Ansible automation for deploying CheckMK, Automox, SentinelOne and Tenable Nessus agents across vCenter-managed Windows and Linux hosts.</div>
+            <div class="repo-tags">
+              <span class="repo-tag">ansible</span>
+              <span class="repo-tag">vcenter</span>
+              <span class="repo-tag">windows</span>
+              <span class="repo-tag">linux</span>
+              <span class="repo-tag">checkmk</span>
+              <span class="repo-tag">sentinelone</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="repo-right">
-        <span class="repo-status status-active">active</span>
-        <div class="repo-lang">
-          <span class="lang-dot" style="background:#e8274b;"></span>
-          <span>Ansible</span>
+        <div class="repo-right">
+          <span class="repo-status status-active">active</span>
+          <span class="repo-lang"><span class="lang-dot" style="background:#EE0000"></span>Ansible</span>
+          <span class="repo-arrow">↗</span>
         </div>
-        <span class="repo-arrow">↗</span>
-      </div>
-    </a>
+      </a>
 
-    <div class="repo-item static">
-      <div class="repo-left">
-        <div class="repo-icon">
-          <svg width="22" height="22" viewBox="0 0 256 290" xmlns="http://www.w3.org/2000/svg">
-            <path d="M96.7 0l96.8 55.9v111.7L96.7 223.5z" fill="#4040B2"/>
-            <path d="M0 55.9l96.7 55.8v111.8L0 167.6z" fill="#5C4EE5"/>
-            <path d="M193.5 55.9L290 0v167.7l-96.5 55.8z" fill="#4040B2"/>
-            <path d="M96.7 234.3l96.8 55.8v-111.7l-96.8-55.9z" fill="#5C4EE5"/>
-          </svg>
-        </div>
-        <div class="repo-info">
-          <div class="repo-name">terraform-platform</div>
-          <div class="repo-desc">Terraform modules for cloud resource provisioning and platform infrastructure — planned as the IaC practice expands.</div>
-          <div class="repo-tags">
-            <span class="repo-tag">terraform</span>
-            <span class="repo-tag">iac</span>
-            <span class="repo-tag">cloud</span>
+      <a class="repo-item" href="https://github.com/WBD-MCI/terraform-vsphere" target="_blank">
+        <div class="repo-left">
+          <div class="repo-icon">
+            <svg width="22" height="22" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M51.2 36.8L77.6 52v30.4L51.2 67.2V36.8z" fill="#844FBA"/>
+              <path d="M24 52L50.4 67.2v30.4L24 82.4V52z" fill="#844FBA" opacity="0.65"/>
+              <path d="M24 18l26.4 15.2v30.4L24 48.4V18z" fill="#844FBA" opacity="0.85"/>
+              <path d="M78.4 52l26.4 15.2v30.4L78.4 82.4V52z" fill="#844FBA" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="repo-info">
+            <div class="repo-name">terraform-vsphere</div>
+            <div class="repo-desc">Terraform automation for provisioning vSphere/vCenter infrastructure — VMs, resource pools, datastores and networking managed as code.</div>
+            <div class="repo-tags">
+              <span class="repo-tag">terraform</span>
+              <span class="repo-tag">vsphere</span>
+              <span class="repo-tag">vcenter</span>
+              <span class="repo-tag">iac</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="repo-right">
-        <span class="repo-status status-planned">planned</span>
-        <div class="repo-lang">
-          <span class="lang-dot" style="background:#7b42bc;"></span>
-          <span>Terraform</span>
+        <div class="repo-right">
+          <span class="repo-status status-active">active</span>
+          <span class="repo-lang"><span class="lang-dot" style="background:#844FBA"></span>Terraform</span>
+          <span class="repo-arrow">↗</span>
+        </div>
+      </a>
+
+    </div>
+
+    <footer>
+      <div class="footer-left">
+        <div class="nav-logo">MCI</div>
+        <div>
+          <div class="footer-text">Media Cloud Infrastructure · Warner Bros. Discovery · Buenos Aires, AR</div>
         </div>
       </div>
-    </div>
+      <div class="footer-right">
+        <span class="footer-text">Last updated: April 2026</span>
+        <a href="https://github.com/WBD-MCI" target="_blank" class="footer-link">github.com/WBD-MCI ↗</a>
+      </div>
+    </footer>
 
   </div>
 
-  <footer>
-    <div class="footer-left">
-      <div class="nav-logo" style="width:24px;height:24px;font-size:9px;">MCI</div>
-      <span class="footer-text">Media Cloud Infrastructure · Warner Bros. Discovery · Buenos Aires, AR</span>
-    </div>
-    <a href="https://github.com/WBD-MCI" target="_blank" class="footer-link">github.com/WBD-MCI ↗</a>
-  </footer>
-
-</div>
 </body>
 </html>
